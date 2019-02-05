@@ -1,0 +1,49 @@
+{
+  "name": "user-manager",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "latest",
+    "@material-ui/core": "^3.9.0",
+    "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "date-fns": "next",
+    "firebase": "^5.8.0",
+    "firebase-admin": "^6.5.1",
+    "fullcalendar": "^3.10.0",
+    "http2": "^3.3.7",
+    "jquery": "^3.3.1",
+    "mailjet-sendemail": "^1.1.4",
+    "material-ui-pickers": "latest",
+    "md5": "^2.2.1",
+    "mime": "^2.4.0",
+    "mime-types": "^2.1.21",
+    "moment": "^2.24.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-avatar-editor": "^11.0.4",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.3",
+    "react-sortable-hoc": "^1.5.3",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

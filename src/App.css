@@ -1,0 +1,126 @@
+
+.block_container {
+  max-width: 950px;
+  margin: auto;
+
+}
+@media (max-width: 991px) {
+  .block_container {
+    width: 90%;
+  }
+}
+.modal {
+
+  position: absolute;
+  width: 90%;
+  max-width: 950px;
+  background-color:white;
+
+  padding: 20px;
+  outline: none;
+
+}
+.drag_box {
+  width: 350px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+.hide {
+  display: none;
+}
+.profile_btn a {
+  color: white;
+}
+.profile_avatar {
+  position: relative;
+  width: 120px;
+}
+.profile_avatar .profile_avatar_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.profile_avatar .profile_avatar_btn span{
+  font-size: 20px;
+}
+.paper_modal {
+  background: white;
+  padding: 30px;
+  width: 90%;
+  margin: auto;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input_row {
+  flex-direction: row !important;
+  justify-content: space-around !important;
+}
+.submit_row {
+  max-width: 300px;
+  margin: auto !important;
+  /* text-align: center; */
+  display: flex !important;
+}
+.disable_user {
+  opacity: 0.5;
+
+}
+.enable_user {
+  cursor: grab;
+}
+.kudos {
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+    margin: 4px !important;
+}
+.kudos_star {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+
+}
+.kudos_star svg {
+    cursor: pointer;
+}
+.kudos_wrapper {
+    display: flex !important;
+    flex-direction: column;
+    align-items: self-start;
+    background: #fafafa;
+    padding: 5px;
+    margin: 5px !important;
+}
+.kudos_wrapper_like {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+.kudos_result_wrapper {
+    display: flex !important;
+    align-items: center !important;
+}
+.kudos_result {
+    display: flex !important;
+    align-items: center ;
+    justify-content: flex-end;
+}
+.kudos_result > span {
+    display: flex !important;
+    align-items: center;
+}
+.event_wrapper {
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+    margin: 4px !important;
+}
+.event_content {
+
+}
