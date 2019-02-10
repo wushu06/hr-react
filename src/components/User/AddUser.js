@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField,SnackbarContent,FormControl, Checkbox,FormControlLabel, MenuItem, Icon, Button} from '@material-ui/core'
+import {TextField,SnackbarContent,Snackbar,FormControl, Checkbox,FormControlLabel, MenuItem, Icon, Button} from '@material-ui/core'
 import firebase from '../../firebase';
 import md5 from "md5";
 import SaveUser from '../../Auth/SaveUser';
 import {connect} from "react-redux";
+import SnackBar from '../../containers/SnackBar'
 
 
 
@@ -44,6 +45,7 @@ class AddUser extends React.Component {
         users: [],
         allGroups: [],
         isAdmin: false,
+        open:false,
         errors: {message: 'test'}
     };
     /*
@@ -85,11 +87,11 @@ class AddUser extends React.Component {
 
         if (this.isFormEmpty(this.state)) {
             error = { message: "Fill in all fields" };
-            this.setState({ errors: errors.concat(error) });
+            this.setState({loading:false,open:true, errors: errors.concat(error) });
             return false;
         } else if (!this.isPasswordValid(this.state)) {
             error = { message: "Password is invalid" };
-            this.setState({ errors: errors.concat(error) });
+            this.setState({loading:false,open:true, errors: errors.concat(error) });
             return false;
         } else {
             return true;
@@ -157,22 +159,39 @@ class AddUser extends React.Component {
      */
     handleSubmit = event => {
         event.preventDefault();
+        this.setState({
+            loading: true,
+        });
         let errors = []
         let save = new SaveUser()
         if(this.isFormValid() ) {
             let result =  save.handleSubmit(this.state, false, false);
             result.then(res => {
-                console.log(res);
+                console.log(res[0]);
                 this.setState({
                     loading: false,
-                    errors:  errors.concat({message:  res[0]})
+                    open:true,
+                    errors:   res[0] ? errors.concat({message:  res[0] }) : {message:'Account has been added'}
 
-                }, ()=> console.log(this.state.errors));
+                });
 
+            }).then(err=> {
+                this.setState({
+                    loading: false,
+
+
+                });
             })
 
         }
     }
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
 
 
 
@@ -280,14 +299,28 @@ class AddUser extends React.Component {
                     </FormControl>
 
                 </form>
+
                 {errors.length > 0 && (
-                    <SnackbarContent
-                        className={classes.snackbar}
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        className="snackbar"
+                        open={open}
+                        autoHideDuration={3000}
+                        onClose={this.handleClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
                         message={this.displayErrors(errors)}
-                       
+
                     />
 
+
+
                 )}
+
 
             </div>
         );

@@ -29,21 +29,54 @@ class SaveUser extends React.Component {
                last_name: state.lastName,
                nickname: state.companyName,
                password: state.password,
-               email:state.email})
+               email:state.email,
+           })
        }).then(res=>res.json())
            .then(res => {
 
                if(res.message) {
                    result.push(res.message)
+                   return;
 
                }
 
                if(collection){
                    this.addCollection(res, state)
+                   let msg = 'Welcome to HR.com';
+
+                   fetch('http://localhost/mail/mailswift/ums.php', {
+                       method: "POST",
+                       body: "from=New account&email="+state.email+"&name="+state.firstName+"msg="+msg,
+                       headers:
+                           {
+                               "Content-Type": "application/x-www-form-urlencoded"
+                           }
+                   }).then( response => {
+                       console.log(response);
+                   })
+                       .catch( error => {
+                           console.log(error);
+
+                       })
 
                }else{
 
                    this.saveUser(res, state)
+                   let msg = 'An new account has been created for you';
+                   fetch('http://localhost/mail/mailswift/ums.php', {
+                       method: "POST",
+                       body: "from=New account&email="+state.email+"&name="+state.firstName+"msg="+msg,
+                       headers:
+                           {
+                               "Content-Type": "application/x-www-form-urlencoded"
+                           }
+                   }).then( response => {
+                       console.log(response);
+                   })
+                       .catch( error => {
+                           console.log(error);
+
+                       })
                }
                if(set) {
                    window.localStorage.setItem('userId', res.id);
@@ -53,7 +86,7 @@ class SaveUser extends React.Component {
                }
            })
            .then(err=>{
-
+                console.log(err);
 
            })
 
@@ -146,6 +179,8 @@ class SaveUser extends React.Component {
 
 
    }
+
+
 }
 
 export default SaveUser;

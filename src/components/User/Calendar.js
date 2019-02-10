@@ -17,29 +17,37 @@ class Calendar extends React.Component {
         eventTitle: '',
         eventComment: '',
         events: [],
+        userEvents: [],
         eventDate: '',
         exist: false,
         index: '',
-        start: ''
+        start: '',
+        dragStart : '',
+        dragStop: ''
 
     }
     componentDidMount() {
         let collection = this.state.companyName.replace(/[^a-zA-Z0-9]/g, '');
         let ranges = [];
-       let events = []
+
+        let events = [];
+        let userEvents = [];
 
         firebase.database().ref(collection).child('users').on('child_added', snap => {
+
             if (snap.val().holiday && 'range' in snap.val().holiday) {
                 ranges.push({date: snap.val().holiday.range, name: snap.val().firstName});
                 this.setState({ranges: ranges}, () => this.showCalendar())
             }
             if (snap.val().events) {
-
-
                 events.push(snap.val().events);
                 this.setState({events}, () => this.showCalendar())
             }else{
                this.showCalendar()
+            }
+            if(snap.val().id === Number(this.props.currentUser.uid)) {
+                snap.val().events && userEvents.push(snap.val().events);
+                snap.val().events && this.setState({userEvents})
             }
 
         })
@@ -63,7 +71,9 @@ class Calendar extends React.Component {
 
             })
         })
+
         this.state.events.length > 0 && this.state.events.map((ev, i) => {
+
             ev.length > 0 && ev.map(single => {
 
                 return  eventData.push({title: single.eventTitle, start:single.eventDate, end: moment(single.eventDate).format('YYYY-MM-DD') , backgroundColor: '#850986' })
@@ -80,15 +90,38 @@ class Calendar extends React.Component {
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2019-01-12',
+            defaultDate: moment(new Date()).format('YYYY-MM-DD'),
             navLinks: true, // can click day/week names to navigate views
             selectable: true,
             selectHelper: true,
+            droppable: true,
+
+            drop: function(date) {
+                console.log(date);
+            },
+            eventDragStart: function( event, jsEvent, ui, view ) {
+
+
+                _self.setState({dragStart: moment(event.start).format('YYYY-MM-DD') });
+
+            },
+            eventDragStop: function( event, jsEvent, ui, view ) {
+
+
+            },
+            eventDrop: function( event, delta, revertFunc, jsEvent, ui, view ) {
+                 let index = _self.state.events[0].findIndex(x => x.eventTitle === event.title);
+
+
+                  _self.setState({eventTitle: event.title, index: index, eventDate: event.start.format() , exist: true})
+                   _self.handleDrag(index);
+
+            },
             select: function(start, end) {
 
 
                 _self.handleClickOpen()
-                _self.setState({eventDate: start, exist: false, eventTitle: '', index: '', start: ''})
+                _self.setState({eventDate:start.format(), exist: false, eventTitle: '', index: '', start: ''})
 
 
 
@@ -96,9 +129,16 @@ class Calendar extends React.Component {
             },
             eventClick: function(event,  jsEvent, view){
                 _self.handleClickOpen()
+                 let events = _self.convertArray(_self.state.events)
 
-                let index = _self.state.events[0].findIndex(x => x.eventTitle ===event.title);
-                _self.setState({eventTitle: event.title, index: index, start: event.start, exist: true})
+
+                  let index = events.findIndex(x => {
+
+                      return  x && x.eventTitle === event.title
+                  });
+
+
+                _self.setState({eventTitle: event.title, index: index, eventDate: event.start.format(), exist: true})
                 //console.log(index);
                // console.log(view);
 
@@ -119,6 +159,12 @@ class Calendar extends React.Component {
         $('#calendar').fullCalendar('unselect');
 
     }
+
+    handleDrag = index => {
+
+        console.log(this.state.eventDate);
+        this.handleAgreeUpdate()
+    }
     handleClickOpen = () => {
         this.setState({ alert: true });
     };
@@ -129,7 +175,7 @@ class Calendar extends React.Component {
     handleAgree = () => {
         this.setState({alert: false});
         let collection = this.state.companyName.replace(/[^a-zA-Z0-9]/g, '');
-
+        let allEvents  = this.state.events.length > 0 ? this.convertArray(this.state.events) : []
 
 
        let newEvent =  {
@@ -137,21 +183,15 @@ class Calendar extends React.Component {
                         eventComment: this.state.eventComment,
                         eventDate : this.state.eventDate
                      };
-        let events =  this.state.events;
-        if(events.length > 0) {
-            let arrToConvert =  events
-            let newArr = [];
 
-
-            for(let i = 0; i < arrToConvert.length; i++)
-            {
-                newArr = newArr.concat(arrToConvert[i]);
-            }
-           events =  newArr
-            events.push(newEvent)
+        let events =  this.state.userEvents;
+        if(events && events.length > 0) {
+           events  = this.convertArray(events)
+           events.push(newEvent)
         }else {
             events = [newEvent]
         }
+        allEvents.push(newEvent)
 
 
 
@@ -162,7 +202,7 @@ class Calendar extends React.Component {
             })
             .then(()=> {
                 this.setState({
-                    events: [events],
+                    events:   [allEvents],
                     eventTitle: '',
                     eventComment: ''}, () => this.showCalendar())
 
@@ -170,6 +210,15 @@ class Calendar extends React.Component {
             .catch(err=> {
                 console.log(err);
             })
+    }
+    convertArray = events => {
+        let arrToConvert =  events
+        let newArr = [];
+        for(let i = 0; i < arrToConvert.length; i++)
+        {
+            newArr = newArr.concat(arrToConvert[i]);
+        }
+        return events =  newArr
     }
     handleChange = name => event => {
         this.setState({
@@ -185,11 +234,13 @@ class Calendar extends React.Component {
         this.state.events.length > 0 && this.state.events.map((ev, i) => {
 
             ev.length > 0 && ev.map((single, x) => {
+                console.log(single.eventDate);
                 if(x === this.state.index) {
+
                     return eventData.push({
                         eventTitle: this.state.eventTitle,
                         eventComment: '',
-                        eventDate:  moment(single.eventDate).format('YYYY-MM-DD')
+                        eventDate:  this.state.eventDate
 
                     })
                 }else{

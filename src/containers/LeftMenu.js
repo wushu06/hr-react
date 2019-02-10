@@ -5,6 +5,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import firebase from "../firebase";
 import {connect} from "react-redux";
 import {  withRouter} from 'react-router-dom';
+import logo from '../assets/hr.png'
 
 class LeftMenu extends React.Component {
     state = {
@@ -43,6 +44,7 @@ class LeftMenu extends React.Component {
                     open={left}
                     onClose={toggleDrawerFalse}
                     onOpen={toggleDrawerTrue}
+                    className="left_menu"
                 >
                     <div
                         tabIndex={0}
@@ -50,12 +52,22 @@ class LeftMenu extends React.Component {
                         onClick={toggleDrawerTrue}
                         onKeyDown={toggleDrawerFalse}
                     >
-                        {this.state.fullName &&
                         <List>
-                            <ListItemText primary={this.state.fullName}/>
-
+                            <ListItem button >
+                                <img src={logo} alt="" width={150}/>
+                            </ListItem>
                         </List>
-                        }
+                        <Divider />
+
+                           {/* {this.state.fullName &&
+                            <List>
+                                <ListItem button >
+                                    <ListItemText primary={this.state.fullName}/>
+                                </ListItem>
+
+                            </List>
+                            }
+*/}
                         <Divider />
                         <List>
                             <Link  to="/" >
@@ -71,6 +83,15 @@ class LeftMenu extends React.Component {
                             <ListItem button >
                                 <ListItemText primary="Admin" />
                             </ListItem>
+                            </Link>
+
+                        </List>
+                        <Divider />
+                        <List>
+                            <Link to="/organisation-chart" >
+                                <ListItem button >
+                                    <ListItemText primary="Organisation Chart" />
+                                </ListItem>
                             </Link>
 
                         </List>

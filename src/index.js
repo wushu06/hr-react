@@ -23,6 +23,9 @@ import Calendar from './components/User/Calendar'
 import Nomatch from './containers/404';
 import Kudos from './components/Kudos'
 import Board from './components/Kudos/Board'
+import OrgChart from './components/Admin/OrgChart'
+import Notifications from './components/Admin/Notifications'
+import J1 from './J1'
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -94,6 +97,9 @@ class Root extends React.Component {
                 <Route path="/calendar" component={Calendar} />
                 <Route path="/kudos" component={Kudos} />
                 <Route path="/kudos-board" component={Board} />
+                <Route path="/organisation-chart" component={OrgChart} />
+                <Route path="/j1" component={J1} />
+                <Route path="/notifications" component={Notifications} />
                 <Route component={Nomatch} />
             </Switch>
 

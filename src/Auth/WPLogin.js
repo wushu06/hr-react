@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { SnackbarContent, Grid, Button,  FormControl, FormControlLabel, Checkbox, Input, InputLabel} from '@material-ui/core';
-import logo from '../logo.svg';
+import logo from '../assets/hr.png'
 import firebase from "../firebase";
 import {  withRouter} from 'react-router-dom';
 import {setUser} from "../action";
@@ -97,7 +97,7 @@ class Login extends React.Component {
                 <Grid container spacing={24} center="true">
                     <Grid item xs={12}>
                         <div style={{textAlign : 'center', width: '100%'}}>
-                            <img src={logo} alt="" width={80}/>
+                            <img src={logo} alt="" width={150}/>
                         </div>
 
                         <h2 style={{textAlign: 'center'}} >Login</h2>

@@ -3,7 +3,7 @@ import {Link, withRouter} from 'react-router-dom';
 import { SnackbarContent,  Grid, Button, FormControl, FormControlLabel, Checkbox, Input, InputLabel} from '@material-ui/core';
 import firebase from '../firebase';
 import md5 from 'md5';
-import logo from '../logo.svg'
+import logo from '../assets/hr.png'
 import SaveUser from './SaveUser';
 
 
@@ -105,7 +105,7 @@ class Register extends React.Component {
                     <Grid container spacing={24} center="true">
                         <Grid item xs={12}>
                             <div style={{textAlign : 'center', width: '100%'}}>
-                                <img src={logo} alt="" width={80}/>
+                                <img src={logo} alt="" width={150}/>
                             </div>
 
                             <h2 style={{textAlign: 'center'}} >Register</h2>

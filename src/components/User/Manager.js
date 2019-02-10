@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../containers/Header'
 import firebase from '../../firebase'
-import {Button, Grid, Icon, List, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core'
+import {Button, Grid, Icon,Snackbar, List, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import $ from 'jquery'
@@ -18,7 +18,10 @@ class Manager extends React.Component {
         open: false,
         alert: false,
         delete: false,
-        id: ''
+        openNote: false,
+        groupId: '',
+        id: '',
+        errors: []
 
 
     }
@@ -72,28 +75,56 @@ class Manager extends React.Component {
     handleAlertClose = () => {
         this.setState({ alert: false });
     }
-    deleteUser= id => {
+    deleteUser= (id, gId) => {
         this.handleClickOpen()
-        this.setState({id: id})
+        this.setState({id: id, groupId: gId})
 
     }
 
     handleAgree = () => {
         this.setState({ alert: false, delete: true });
         let id = this.state.id
+        let groupId = this.state.groupId
+        let errors = []
         if(id) {
             let collection = this.props.currentUser.displayName.replace(/[^a-zA-Z0-9]/g, '')
             firebase.database().ref(collection).child('users')
                 .child(id)
                 .remove(err => {
-                    this.setState({loading: false})
+
                     if (err !== null) {
                         console.error(err);
+                        this.setState({
+                            loading: false,
+                            openNote:true,
+                            errors:   errors.concat({message:  err.message })
+                        });
                     } else {
                         console.log('no error');
-                        this.deleteFirebaseAccount(id)
+                        this.deleteWPaccount(id)
+                        this.setState({
+                            loading: false,
+                            openNote:true,
+                            errors:   errors.concat({message:  'Account has been deleted.' })
+                        })
                     }
-                });
+                }).then(()=> {
+                    firebase.database().ref(collection)
+                        .child('groups')
+                        .child(groupId)
+                        .child('users')
+                        .child(id)
+                        .remove(err => {
+
+                        });
+                    //remove from head
+                    firebase.database().ref(collection).child('groups').child(groupId).child('head')
+                        .remove(err => {
+
+                        });
+            })
+
+
         }else{
             console.log('NO ID');
         }
@@ -103,7 +134,7 @@ class Manager extends React.Component {
     displayUsers = users => (
         users.map((user, i)=> (
                 <List key={i} >
-                    {user.firstName}<Button  onClick={()=>this.deleteUser(user.id)}><Icon >cancel_icon</Icon></Button>
+                    {user.firstName}<Button  onClick={()=>this.deleteUser(user.id, user.group[0])}><Icon >cancel_icon</Icon></Button>
                     <Button  onClick={()=>this.updateUser(user.id)}><Icon >edit_icon</Icon></Button>
                 </List>
             )
@@ -128,32 +159,42 @@ class Manager extends React.Component {
     }
 
 
+    handleNoteClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ openNote: false });
+    };
+    displayErrors = errors =>
+        errors.map((error, i) => <p key={i}>{error.message}</p>);
 
 
 
 
 
-    deleteFirebaseAccount = id => {
+    deleteWPaccount = id => {
 
-        fetch('http://localhost/mail/delete.php', {
-            method: "POST",
-            body: "delete="+id,
-            headers:
-                {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-        }).then( response => {
-            console.log(response);
-        })
-            .catch( error => {
-                console.log(error);
+        // delete from wp
+        let menuURL =  "http://react.nourdigital.com/wp-json/wp/v2/users/"+id+"?reassign=1&force=true";
+        fetch(menuURL, {
+            method: 'delete',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9yZWFjdC5ub3VyZGlnaXRhbC5jb20iLCJpYXQiOjE1NDkyMTE0MzMsIm5iZiI6MTU0OTIxMTQzMywiZXhwIjoxNTQ5ODE2MjMzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxIn19fQ.6NlTjVNliJ_pBzwLFyy2pknEJ8AY5sxf3ziTc_yR7sw",
 
+            },
+
+        }).then(res => res.json())
+            .then(res => {
+                console.log('user deleted');
             })
     }
 
 
     render() {
-        const { users} = this.state
+        const { users, errors, openNote} = this.state
         return (
             <div>
                 <Header/>
@@ -190,6 +231,26 @@ class Manager extends React.Component {
                              userId={this.state.id}
                              collection={this.props.currentUser.displayName }/>
                 }
+                {errors.length > 0 && (
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        className="snackbar"
+                        open={openNote}
+                        autoHideDuration={3000}
+                        onClose={this.handleNoteClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={this.displayErrors(errors)}
+
+                    />
+
+
+
+                )}
 
             </div>
 

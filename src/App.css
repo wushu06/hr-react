@@ -2,12 +2,17 @@
 .block_container {
   max-width: 950px;
   margin: auto;
+    padding: 50px 0;
 
 }
 @media (max-width: 991px) {
   .block_container {
     width: 90%;
+
   }
+}
+.left_menu {
+    padding: 30px 0;
 }
 .modal {
 
@@ -22,8 +27,20 @@
 }
 .drag_box {
   width: 350px;
-  padding: 10px;
-  border: 1px solid #aaaaaa;
+  padding: 10px !important;
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+    margin: 4px !important;
+}
+.head_drag {
+
+    padding: 10px 30px;
+    background-color: #fafafa;
+}
+.staff_drag {
+    padding: 10px 30px 10px 60px;
+}
+.staff_drag div {
+    padding-left: 0 !important;
 }
 .hide {
   display: none;
@@ -123,4 +140,118 @@
 }
 .event_content {
 
+}
+
+
+
+
+
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 900px;
+    min-width: 300px;
+}
+.row {
+    width: 100%;
+    overflow: none;
+}
+.column {
+    float: left;
+    width: 33%;
+}
+.connected-sortable {
+    margin: 0 auto;
+    list-style: none;
+
+}
+li.draggable-item {
+    width: auto;
+    padding: 15px 20px;
+
+    -webkit-transition: transform 0.25s ease-in-out;
+    -moz-transition: transform 0.25s ease-in-out;
+    -o-transition: transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
+    -webkit-transition: box-shadow 0.25s ease-in-out;
+    -moz-transition: box-shadow 0.25s ease-in-out;
+    -o-transition: box-shadow 0.25s ease-in-out;
+    transition: box-shadow 0.25s ease-in-out;
+}
+li.draggable-item:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+
+    background-color: #eaeaea !important;
+}
+/* styles during drag */
+li.draggable-item.ui-sortable-helper {
+
+    -webkit-box-shadow: 0 0 8px rgba(53, 41, 41, 0.8);
+    -moz-box-shadow: 0 0 8px rgba(53, 41, 41, 0.8);
+    box-shadow: 0 0 8px rgba(53, 41, 41, 0.8);
+    transform: scale(1.015);
+    z-index: 100;
+}
+li.draggable-item.ui-sortable-placeholder {
+    background-color: #ddd;
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+}
+.users {
+    background-color: #eaeaea;
+    padding-left: 0;
+    min-height: 100px;
+}
+.users li:hover {
+
+
+    background-color: #ddd !important;
+}
+.head {
+    background-color: #ddd;
+    min-height: 40px;
+    margin-left: 40px;
+    padding-left: 0;
+}
+.droppable-area-staff {
+
+    min-height: 80px;
+    margin-left: 80px;
+    padding-left: 0;
+    background-color:#ece6e6;
+}
+.droppable-area-staff li {
+    background-color: #ece6e6 !important;
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.info div {
+    margin: 10px;
+}
+.info span {
+    width: 50px;
+    height: 10px;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+.info div:first-child span{
+    background-color: #ddd;
+}
+.info div:nth-child(2) span {
+    background-color: #ece6e6 ;
+}
+.snackbar {
+    max-width: 400px !important;
+    transform: translateX(50%);
+}
+span.notif_wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }

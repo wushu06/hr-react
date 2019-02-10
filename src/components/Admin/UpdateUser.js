@@ -48,9 +48,6 @@ class UpdateUser extends React.Component {
         }
 
 
-
-
-
         const newUser = {[userId]:{
                 firstName: firstName ? firstName : profile.firstName,
                 id: userId
@@ -69,6 +66,11 @@ class UpdateUser extends React.Component {
                         .child('users')
                         .update(newUser)
                         .then(()=> {
+                            //remove from head
+                            firebase.database().ref(collection).child('groups').child(group[0]).child('head')
+                                .remove(err => {
+
+                                });
                         })
                         .catch(err=> {
                             console.log(err);
@@ -83,6 +85,11 @@ class UpdateUser extends React.Component {
                 .child(profile.group[0])
                 .child('users')
                 .child(userId)
+                .remove(err => {
+
+                });
+            //remove from head
+            firebase.database().ref(collection).child('groups').child(profile.group[0]).child('head')
                 .remove(err => {
 
                 });
