@@ -50,10 +50,27 @@ class Holiday extends React.Component {
                         groupId: snap.val().group[0] ? snap.val().group[0]  : '' ,
                         currentUserEmail: snap.val().email,
                         range: snap.val().holiday.range ? snap.val().holiday.range : []
+                    },()=> {
+                        this.state.groupId && firebase.database().ref(collection)
+                            .child('groups')
+                            .child(this.state.groupId)
+                            .child('head')
+                            .on('child_added', snap => {
+                                // whenever child added (message or anything else) execute these
+
+                                this.setState({head: snap.val().id, headEmail: snap.val().email}, () => {
+                                    console.log(this.state.head);
+                                    //  snap.val().id && this.sendEmail()
+
+
+                                })
+                            });
                     })
                 }
             })
         });
+
+
     }
 
     handleDateChange = date => {
@@ -102,33 +119,26 @@ class Holiday extends React.Component {
 
     sendRequest =(remainDays, start, end, num) => {
         let collection = this.state.companyName.replace(/[^a-zA-Z0-9]/g, '');
-        let range = this.state.range
-        range.push([start, end, num, 'false'])
+        const key =  firebase.database().ref(collection).push().key
+       // let range = this.state.range
 
-        this.state.groupId && firebase.database().ref(collection).child('groups').child(this.state.groupId).child('head').on('child_added', snap => {
-            // whenever child added (message or anything else) execute these
-
-            this.setState({head: snap.val().id, headEmail: snap.val().email}, () => {
-
-              //  snap.val().id && this.sendEmail()
+        let range = [start, end, num, 'sent', key]
 
 
-            })
-        });
 
 
         firebase.database().ref(collection).child('users')
             .child(this.props.currentUser.uid)
             .update({
                 holiday: {
-                    range:range,
+                    range:{...this.state.range,[key]:range},
                     remainingDays: remainDays
                 }
             })
             .then(()=> {
                 this.setState({holiday: remainDays})
                 console.log('holiday added');
-                this.state.head && this.addNotifications(start, end, num)
+                this.state.head && this.addNotifications(start, end, num, key)
 
             })
             .catch(err=> {
@@ -137,13 +147,15 @@ class Holiday extends React.Component {
     }
 
     displayHolidays = () => {
-        return this.state.range.length > 0 && this.state.range.map((range, i) => {
+
+        return  Object.values(this.state.range).length > 0 && Object.values(this.state.range).map((range, i) => {
+
             return (<ListItem key={i} alignItems="flex-start" className="event_wrapper">
                         <ListItemText
                             className="event_content"
                             primary={(<span>from: <strong>{range[0]}</strong> to: <strong>{range[1]}</strong>  ({range[2]} days)
-                                      <Button onClick={()=>this.deleteHoliday(i, range[2])}><Icon >cancel_icon</Icon></Button></span>)}
-                            secondary='awaiting approval'
+                                      <Button onClick={()=>this.deleteHoliday(range[4], range[2])}><Icon >cancel_icon</Icon></Button></span>)}
+                            secondary={range[3] === 'sent' ? 'awaiting approval' : (range[3] === 'approved')?'approved' : 'declined' }
                             />
                     </ListItem>)
 
@@ -151,35 +163,37 @@ class Holiday extends React.Component {
     }
 
     deleteHoliday = (i, num) => {
-        console.log(i);
         let collection = this.state.companyName.replace(/[^a-zA-Z0-9]/g, '');
-        let range = this.state.range
         let remainDays = this.state.holiday
         remainDays = num+remainDays
 
 
-        // removing item by index
-        range = range.filter((item, x) => {
-            return x !== i
-        })
-
-
-
         firebase.database().ref(collection).child('users')
             .child(this.props.currentUser.uid)
-            .update({
-                holiday: {
-                    range:range,
-                    remainingDays: remainDays
-                }
-            }).then(()=> {
+            .child('holiday')
+            .child('range')
+            .child(i)
+            .remove()
+            .then(()=> {
+                firebase.database().ref(collection).child('users')
+                    .child(this.props.currentUser.uid)
+                    .child('holiday')
+                    .child('remainingDays')
+                    .set(remainDays)
+                    .then(()=> {
+                        firebase.database().ref(collection).child('users')
+                            .child(this.state.head)
+                            .child('notifications')
+                            .child(i)
+                            .child(this.props.currentUser.uid)
+                            .remove()
+                    })
+            })
 
-                this.sendEmail()
-        })
+
     }
     sendEmail = () => {
-        console.log(this.state.headEmail);
-        console.log(this.state.head);
+
 
         fetch('http://localhost/mail/mailswift/holiday.php', {
             method: "POST",
@@ -198,15 +212,16 @@ class Holiday extends React.Component {
 
     }
 
-    addNotifications = (start, end, num) => {
+    addNotifications = (start, end, num, key) => {
+
         let collection = this.state.companyName.replace(/[^a-zA-Z0-9]/g, '');
-        const key =  firebase.database().ref(collection).push().key
+
 
         firebase.database().ref(collection).child('users')
             .child(this.state.head)
             .child('notifications')
             .child(key)
-            .update({[this.props.currentUser.uid] :[ this.state.currentUserEmail,this.state.name, start, end, num] } )
+            .update({[this.props.currentUser.uid] :[ this.state.currentUserEmail,this.state.name, start, end, num, key] } )
             .then(()=> {
                 console.log('notifications added');
             })

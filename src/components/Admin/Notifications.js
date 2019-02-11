@@ -21,6 +21,7 @@ class Notifications extends React.Component {
 
 
                 loadUsers = []
+
                 firebase.database().ref(collection).child('users').on('child_added', snap => {
                     // whenever child added (message or anything else) execute these
 
@@ -60,8 +61,8 @@ class Notifications extends React.Component {
                                <strong>({res[4]} days)</strong>
                                <span>from: {res[2]} to: {res[3]}</span>
                                       <span className="notif_wrapper_btn">
-                                          <Button onClick={()=>this.approveHoliday(key,userId, res)}><Check/></Button>
-                                      <Button onClick={()=>this.cancelHoliday(key,userId, res)}><Cancel/></Button></span>
+                                          <Button onClick={()=>this.approveHoliday(key,userId, res, res[5])}><Check/></Button>
+                                      <Button onClick={()=>this.cancelHoliday(key,userId, res, res[5])}><Cancel/></Button></span>
                            </span>)}
 
                     />
@@ -69,8 +70,9 @@ class Notifications extends React.Component {
             ))
         })
     }
-    approveHoliday = (key,userId, res) => {
+    approveHoliday = (key,userId, res, index) => {
         let collection = this.props.currentUser.displayName.replace(/[^a-zA-Z0-9]/g, '')
+
         firebase.database().ref(collection)
             .child('users')
             .child(this.props.currentUser.uid )
@@ -80,9 +82,22 @@ class Notifications extends React.Component {
             .remove(err=> {
                 console.log(err);
             })
+            .then(()=> {
+                firebase.database().ref(collection).child('users')
+                    .child(Number(userId[0]))
+                    .child('holiday')
+                    .child('range')
+                    .child(index)
+                    .child(3)
+                    .set('approved')
+
+        }).then(()=> {
+            this.sendEmail(res,'Holiday approved', 'Your holiday request has been approved')
+        })
     }
-    cancelHoliday = (key,userId, res) => {
+    cancelHoliday = (key,userId, res, index) => {
         let collection = this.props.currentUser.displayName.replace(/[^a-zA-Z0-9]/g, '')
+
         firebase.database().ref(collection)
             .child('users')
             .child(this.props.currentUser.uid )
@@ -91,10 +106,35 @@ class Notifications extends React.Component {
             .child(Number(userId[0]))
             .remove(err=> {
                 console.log(err);
-            })
+            }).then(()=> {
+            firebase.database().ref(collection).child('users')
+                .child(Number(userId[0]))
+                .child('holiday')
+                .child('range')
+                .child(index)
+                .child(3)
+                .set( 'declined')
+        }).then(()=> {
+            this.sendEmail(res,'Holiday Declined', 'Your holiday request has been declined')
+        })
     }
 
+    sendEmail = (res, subject, message) => {
+        fetch('http://localhost/mail/mailswift/notifications.php', {
+            method: "POST",
+            body: "from="+subject+"&email="+res[0]+"&name="+res[1]+"&message="+message,
+            headers:
+                {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+        }).then( response => {
+            console.log(response);
+        })
+            .catch( error => {
+                console.log(error);
 
+            })
+    }
 
     render() {
         const { users, notifications} = this.state

@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aec8e70e-6d2c-4061-bdb0-7e42f075707f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Auth/SaveUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/SaveUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Auth/WPLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/WPLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Auth/WPRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth/WPRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spinner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spinner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Admin/UpdateUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/UpdateUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/AddUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/AddUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/Notifications.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/Holiday.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Holiday.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Manager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Manager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/LeftMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/LeftMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/RightMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/RightMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,8 +50,8 @@
       <file leaf-file-name="Notifications.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Admin/Notifications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+            <state relative-caret-position="303">
+              <caret line="121" column="11" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="11" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -79,44 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App.css">
+      <file leaf-file-name="notifications.php" pinned="false" current-in-tab="false">
+        <entry file="file:///var/www/html/mail/mailswift/notifications.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="256" column="1" selection-start-line="256" selection-start-column="1" selection-end-line="256" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/User/Manager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="133" column="1" lean-forward="true" selection-start-line="133" selection-start-column="1" selection-end-line="142" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Admin/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1425">
-              <caret line="95" column="67" selection-start-line="95" selection-start-column="67" selection-end-line="95" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RightMenu.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/RightMenu.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -124,8 +71,8 @@
       <file leaf-file-name="Holiday.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/User/Holiday.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="112" column="16" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="16" />
+            <state relative-caret-position="161">
+              <caret line="188" column="37" selection-start-line="188" selection-start-column="37" selection-end-line="188" selection-end-column="37" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -137,29 +84,17 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>#ddd</find>
-      <find>#d6cfcf</find>
-      <find>hover</find>
-      <find>deleteg</find>
-      <find>drag and</find>
-      <find>deleteFirebaseAccount</find>
-      <find>SimpleSnackbar</find>
-      <find>adduser</find>
       <find>loading</find>
       <find>ri</find>
       <find>open</find>
       <find>displayer</find>
-      <find>index</find>
       <find>delete</find>
-      <find>head</find>
       <find>console.</find>
       <find>displayGroupUsers</find>
       <find>name</find>
       <find>addUserToGroup</find>
       <find>deleteu</find>
       <find>Register</find>
-      <find>sendema</find>
-      <find>key</find>
       <find>range</find>
       <find>OrgChart</find>
       <find>deleteGroupUser</find>
@@ -167,6 +102,18 @@
       <find>notifica</find>
       <find>displa</find>
       <find>NotificationsIcon</find>
+      <find>addNotifications</find>
+      <find>conso</find>
+      <find>remain</find>
+      <find>$replacements</find>
+      <find>+ 1</find>
+      <find>sendem</find>
+      <find>index</find>
+      <find>from</find>
+      <find>sende</find>
+      <find>sendema</find>
+      <find>key</find>
+      <find>head</find>
     </findStrings>
     <replaceStrings>
       <replace>Admin</replace>
@@ -187,6 +134,7 @@
       <replace>SnackBar</replace>
       <replace>Notifications</replace>
       <replace>displayNotifications</replace>
+      <replace>sendEmail</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -198,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/Group/AddGroup.js" />
         <option value="$PROJECT_DIR$/src/components/Group/index.js" />
         <option value="$PROJECT_DIR$/src/components/Group/Group.js" />
         <option value="$PROJECT_DIR$/src/containers/404.js" />
@@ -247,6 +194,7 @@
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/containers/RightMenu.js" />
+        <option value="/var/www/html/mail/mailswift/notifications.php" />
         <option value="$PROJECT_DIR$/src/components/Admin/Notifications.js" />
         <option value="$PROJECT_DIR$/src/components/User/Holiday.js" />
       </list>
@@ -379,12 +327,12 @@
       <workItem from="1549053375939" duration="92341000" />
       <workItem from="1549659521753" duration="8587000" />
       <workItem from="1549710451718" duration="34690000" />
-      <workItem from="1549822602539" duration="6704000" />
+      <workItem from="1549822602539" duration="14420000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142322000" />
+    <option name="totallyTimeSpent" value="150038000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="700" extended-state="0" />
@@ -396,11 +344,12 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.329806" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" sideWeight="0.5009709" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.25396827" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.1446208" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.20530303" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49902913" visible="true" weight="0.19090909" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49902913" visible="true" weight="0.19090909" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.24848485" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5009709" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -413,7 +362,6 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="File Transfer" order="7" weight="0.21516755" />
       <window_info anchor="bottom" id="Database Console" order="7" weight="0.329806" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -449,13 +397,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="95" column="67" selection-start-line="95" selection-start-column="67" selection-end-line="95" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/RightMenu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -555,6 +496,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-105">
           <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -585,6 +529,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="60" selection-start-line="46" selection-start-column="60" selection-end-line="46" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -732,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///var/www/html/mail/mailswift/ums.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Auth/SaveUser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
@@ -799,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="95" column="67" selection-start-line="95" selection-start-column="67" selection-end-line="95" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -820,6 +753,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="95" column="67" selection-start-line="95" selection-start-column="67" selection-end-line="95" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/RightMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-516">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/User/Manager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -830,20 +780,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/RightMenu.js">
+    <entry file="file:///var/www/html/mail/mailswift/ums.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-135">
+          <caret selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///var/www/html/mail/mailswift/notifications.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Admin/Notifications.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+        <state relative-caret-position="303">
+          <caret line="121" column="11" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="11" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -852,8 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/User/Holiday.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="112" column="16" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="16" />
+        <state relative-caret-position="161">
+          <caret line="188" column="37" selection-start-line="188" selection-start-column="37" selection-end-line="188" selection-end-column="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
